@@ -1,0 +1,297 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Segoe Ui" , sans-serif;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 25% 75%;
+    width: 100vw;
+}
+
+.sidebar{
+    padding: 40px;
+}
+
+.logo{
+    display: flex;
+}
+
+.logo img{
+    width: 130px;
+    height: 25px;
+    margin-bottom: 20px;
+}
+
+.user{
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    gap: 15px;
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+
+.user #left-img{
+    padding-left: 15px
+    
+}
+
+.user #right-img{
+    padding-left: 80px
+    
+}
+
+.user-card{
+    display:flex;
+    flex-direction: column;
+}
+
+.user-card small{
+    color: grey;
+}
+/* -----------------------Navbar css--------------------------- */
+
+ul{
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.menu-items{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 15px;
+    color: gray;
+}
+
+.menu-items img{
+    width: 22px;  
+}
+
+#docs{
+    background-color: rgb(212,247,181);
+    border-radius: 5px;
+    color: black;
+}
+
+/* ------------contact css --------------*/
+
+.contact{
+    margin-top: 350px;
+    grid-template-rows: 1fr 2fr 1fr;
+}
+
+.top{
+    grid-row: 1;
+    margin-bottom: 20px;
+}
+
+
+.middle{
+    grid-row: 2;
+    margin-bottom: 20px;
+    font-size: 16px;
+    gap: 5px;
+    line-height: 20px;
+}
+
+.bottom{
+    grid-row: 3;
+}
+
+.middle h2{
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+.middle p{
+    color: gray;
+    font-size: 15px;
+}
+
+
+/* ---------------------right side css------------ */
+
+.home{
+    background-color: #f3f2f1;
+    padding: 30px;
+}
+
+.nav{
+    display: flex;
+    gap: 15px;
+    color: gray;
+    padding:10px;
+    margin-bottom: 10px
+}
+
+#home{
+    color: black;
+}
+
+/* ----------------searchbar */
+
+.search{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.searchbar{
+    display: flex;
+    background-color: white;
+    padding: 12px;
+    justify-content: space-between;
+    color: grey;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.searchbar img{
+    padding-left: 60px;
+}
+
+#heading{
+    font-size: 34px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* -------------------grid section */
+
+.main{
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    
+}
+
+.row{
+    display: grid;
+    grid-template-columns: 0.5fr 2.5fr 1fr 1fr 1fr 0.5fr;
+    /* padding */
+    padding: 8px;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+}
+
+.statusbtn{
+    padding: 10px 00px;
+    border: none;
+     color:grey;
+
+}
+
+.pending{
+    background-color: #ddd;
+    padding: 8px 15px;
+    border-radius: 50px;
+    color: #626d82;
+    border: none;
+    /* cursor: pointer; */
+}
+
+.needssignin{
+    padding: 8px 10px;
+    border-radius: 50px;
+    background-color: #436d7c;
+    color: white;
+    border: none;
+    /* cursor: pointer; */
+}
+
+.completed{
+    padding: 8px 15px;
+    background-color: #d3f7b5;
+    color: #1f4451;
+    border-radius: 50px;
+    border: none;
+    /* cursor: pointer; */
+}
+
+.lm{
+    padding: 15px 0px;
+    color: grey;
+    display: block;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.signnow{
+    padding: 12px 25px ;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.preview{
+    padding: 12px 37px ;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.downloadpdf{
+    padding: 12px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.vector{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.previewbtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px #b5bdcd;
+    color:#b5bdcd;
+    background-color: white !important;
+
+}
+
+.previewbtn button{
+    background-color: white;
+    border: 1px solid #b5bdcd;
+    color: #436d7c;
+}
+
+
+.title{
+    color: #436d7c;
+    font-weight: bold;
+     padding-top: 20px;     
+}
+
+.rectangle{
+    padding-top: 20px;
+}
+
+.row-header{
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+}
+
+small{
+    font-size: 12px;
+}
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  color: grey;
+  border: 1px #ddd;
+  accent-color: #4caf50;
+ 
+}
