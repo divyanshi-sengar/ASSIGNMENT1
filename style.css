@@ -7,12 +7,13 @@
 
 .container{
     display: grid;
-    grid-template-columns: 25% 75%;
-    width: 100vw;
+    grid-template-columns: 371px auto;
+    /* width: 100vw; */
 }
 
 .sidebar{
-    padding: 40px;
+    padding: 36px;
+
 }
 
 .logo{
@@ -44,7 +45,7 @@
 }
 
 .user #right-img{
-    padding-left: 80px
+    padding-left: 20px
     
 }
 
@@ -64,7 +65,10 @@ ul{
     align-items: center;
 
 }
-
+ul li{
+   display: flex;
+   gap:5px;
+}
 .menu-items{
     display: flex;
     align-items: center;
@@ -73,8 +77,20 @@ ul{
     color: gray;
 }
 
+ul a{
+    text-decoration: none;
+    color: grey;
+}
+
+li:hover{
+    background-color: rgb(221,249,196);
+    border-radius:5px ;
+   
+}
+
 .menu-items img{
     width: 22px;  
+    filter: grayscale(100%) brightness(70%);
 }
 
 #docs{
@@ -86,8 +102,11 @@ ul{
 /* ------------contact css --------------*/
 
 .contact{
-    margin-top: 350px;
+    /* position: relative;
+    top:400px; */
+    margin-top: 360px;
     grid-template-rows: 1fr 2fr 1fr;
+    /* background-color: #4caf50; */
 }
 
 .top{
@@ -117,12 +136,23 @@ ul{
     font-size: 15px;
 }
 
+.contactbtn{
+    color: white;
+    background-color:#1F4451;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
 /* ---------------------right side css------------ */
 
 .home{
     background-color: #f3f2f1;
     padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .nav{
@@ -154,22 +184,36 @@ ul{
     border: 1px solid #ddd;
     border-radius: 5px;
 }
+.searchbar input{
+    border: none;
+    font-size: 16px;
+    background-color: white; 
+    color: black;  
+    outline: none;          
+}
+
 
 .searchbar img{
     padding-left: 60px;
 }
 
 #heading{
-    font-size: 34px;
+    font-size: 33px;
     font-family: 'Times New Roman', Times, serif;
 }
 
 /* -------------------grid section */
 
 .main{
-    padding: 20px;
+    padding:20px 20px;
     background-color: white;
     border-radius: 5px;
+    /* width: 1095px; */
+    /* height:571px; */
+    /* position: relative; */
+    /* position: absolute;
+    top:164px;
+    left:571px; */
     
 }
 
@@ -177,18 +221,21 @@ ul{
     display: grid;
     grid-template-columns: 0.5fr 2.5fr 1fr 1fr 1fr 0.5fr;
     /* padding */
-    padding: 8px;
+    padding: 5px;
     justify-content: space-between;
     border-bottom: 1px solid #ddd;
 }
 
 .statusbtn{
-    padding: 10px 00px;
+    padding: 12px 00px;
     border: none;
      color:grey;
 
 }
 
+.row-header{
+    margin-bottom: 10px;;
+}
 .pending{
     background-color: #ddd;
     padding: 8px 15px;
