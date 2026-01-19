@@ -17,51 +17,40 @@ body {
 }
 
 
-/* #thheader {
-    display: flex;
-    gap: 5px;
-} */
-
 /* ----------left sidebar css */
 
 .sidebar {
     display: flex;
     flex-direction: column;
-    /* left:-19px; */
+    justify-content: space-between;
+    align-items: center;
     width: 371px;
     height: 100%;
-    /* background-color: red; */
-    /* padding: 36px; */
-
+    padding:35px;
+    border: 1px solid #EBEBEB;
 }
 
-.siidebar-top {
+.sidebar-top{
     display: flex;
+    flex-direction: column;
     gap: 20px;
-    justify-content: space-between;
-    /* flex-direction: column; */
-
 }
 
 .logo {
     display: flex;
-    position: relative;
-    left: 35px;
-    top: 36px;
+    justify-content: flex-start;
 }
 
 .logo img {
     width: 130px;
     height: 25px;
-    margin-bottom: 20px;
 }
+
+
 
 .user {
     display: flex;
     flex-direction: row;
-    position: relative;
-    top: 45px;
-    left: 35px;
     height: 69px;
     width: 286px;
     align-items: center;
@@ -69,6 +58,7 @@ body {
     font-size: 16px;
     border: 1px solid #ddd;
     border-radius: 6px;
+
 }
 
 
@@ -78,6 +68,14 @@ body {
 
 .user #right-img {
     padding-left: 20px
+}
+
+
+.profile-arrow{
+    margin-left:12px;
+    font-size:14px;
+    color:#BABABA;
+    cursor:pointer;
 }
 
 .user-card {
@@ -90,6 +88,9 @@ body {
 }
 
 /* -----------------------Navbar css--------------------------- */
+.navbar{
+
+}
 
 ul {
     list-style: none;
@@ -105,17 +106,8 @@ ul li {
 
 .menu-items {
     display: flex;
-    position: relative;
-    left: 36px;
-    /* ***********************top */
-    top: 60px;
-    width: 286px;
-    align-items: center;
-    gap: 20px;
     padding: 15px;
     color: gray;
-    height:
-        51px;
 }
 
 ul a {
@@ -143,58 +135,55 @@ li:hover {
 /* ------------contact css --------------*/
 
 .contact {
-    position: relative;
-    left: 35px;
     width: 289px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     margin-top: auto;
     vertical-align: baseline;
-    padding-bottom: 30px;
 }
 
-.top {
-    grid-row: 1;
-    margin-bottom: 20px;
+.top img{
+    width: 27px;
+    height: 27px;
 }
-
 
 .middle {
-    grid-row: 2;
-    margin-bottom: 20px;
     font-size: 16px;
-    gap: 5px;
-    line-height: 20px;
-}
-
-.bottom {
-    grid-row: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .middle h2 {
-    font-size: 18px;
-    margin-bottom: 5px;
+    font-size: 24px;
+    font-weight: 500;
+    color: #1F4451;
 }
 
 .middle p {
     color: gray;
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 .contactbtn {
     color: white;
     background-color: #1F4451;
-    padding: 5px 8px;
+    padding: 5px 10px;
     border-radius: 5px;
-    font-weight: bold;
     cursor: pointer;
     border: none;
+    size: 12px;
+    font-weight:600;
 }
 
 /* ---------------------right side css------------ */
 
 .home {
-    flex: 1;
+    /* flex: 1; */
     background-color: #f3f2f1;
-    padding: 30px;
+    padding: 20px 60px;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -210,20 +199,23 @@ li:hover {
     position: static;
 }
 
+.nav a{
+    text-decoration: none;
+}
+
 #home {
     color: black;
 }
 
+#doc1-head{
+    color: grey;
+}
 /* ----------------searchbar */
 
 .search {
     display: flex;
     justify-content: space-between;
-    /* flex-direction: row;
-     padding: 10px; */
     align-items: center;
-    /* gap: 16px; */
-    /* background-color: rebeccapurple; */
 }
 
 .search-right {
@@ -237,7 +229,6 @@ li:hover {
     display: flex;
     flex-direction: row;
     background-color: white;
-    /* padding: 12px; */
     justify-content: space-between;
     color: grey;
     border: 1px solid #ddd;
@@ -245,7 +236,6 @@ li:hover {
 }
 
 .add-btn {
-    /* padding: 12px; */
     line-height: 2;
     color: #fff;
     border: none;
@@ -298,37 +288,49 @@ li:hover {
 .main {
     background-color: white;
     border-radius: 8px;
-    min-width: 1084px;
-    height: 500px;
+    min-width: 1000px;
+    overflow-x: visible;
     border: 0.5px solid #B5BDCD
 }
 
 table {
     width: 100%;
-    padding: 20px 40px;
+    table-layout: auto;
+    border-collapse: collapse;
 }
 
 
+.header-arrow{
+    margin-left:8px;
+    font-size:14px;
+    color:#BABABA;
+    cursor:pointer;
+}
 
 th,
 td {
-    padding: 14px 12px;
+    padding: 16px 16px;
     text-align: start;
-    font-size: 14px;
+     font-size: 14px; 
     border-bottom: 1px solid #eaecef;
-    vertical-align: middle;
+    vertical-align: top;
 }
 
+thead th:last-child,
+tbody td:last-child{
+    text-align:right;
+    white-space:nowrap;
+}
 
 th {
     color: #2A2A2A;
     font-weight: 600;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 th input[type="checkbox"] {
-    vertical-align: middle;
-    margin-right: 8px;
+    vertical-align: top;
+    /* margin-right: 8px; */
 }
 
 th span img {
@@ -336,23 +338,28 @@ th span img {
 }
 
 tr td i {
-    font-weight: 200;
+    Weight: 500;
     color: #B5BDCD;
-    margin: 0 6px;
+    margin: 0 2px;
+    font-size: 16px;
+}
+
+ #italic{
+    color: #436D7C
 }
 
 .doc-title {
     color: #436D7C;
-    font-weight: 500;
-    font-size: 15px;
+    font-weight: 600;
+    font-size: 16px;
 }
 
 thead th:nth-child(3) {
-  padding-left: 200px; 
+  padding-left: 150px; 
 }
 
 tbody td:nth-child(3) {
-  padding-left: 200px; 
+  padding-left: 150px; 
 }
 
 thead th:nth-child(4) {
@@ -371,21 +378,17 @@ tbody td:nth-child(5) {
   padding-left: 30px; 
 }
 
-.statusbtn {
-    padding: 12px 00px;
-    border: none;
-    color: grey;
-}
-
 .time {
     color: #6b7280;
-    font-size: 12px;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .date {
     color: #6b7280;
-    /* font-family: 'Inter', sans-serif;*/
     font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .subtext {
@@ -398,48 +401,55 @@ tbody td:nth-child(5) {
     display: inline-block;
     padding: 4px 10px;
     border-radius: 22px;
-    font-size: 13px;
     font-family: "Inter", sans-serif;
-
+    font-weight: 500;
 }
 
 .badge-sign {
     background: #1f4e5f;
     color: #fff;
+    font-size: 16px;
 }
 
 .badge-pending {
     background: #eef0f3;
     color: #626d82;
+    font-size: 15px;
 }
 
 .badge-complete {
     background: #d9f7c6;
     color: #1F4451;
+    font-size: 15px;
 }
 
 .btn {
     padding: 8px 14px;
     border-radius: 6px;
-    border: 1px solid #cbd5e1;
+    border: 1px solid #B5BDCD;
     background: #fff;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 14px;
     color: #626d82;
-    weight: 500;
+    font-weight: 500;
     width: 134px;
     font-family: "Inter", sans-serif;
     /* flex-direction: row;
      padding: 10px; */
 }
 
-.action-cell {
-    padding-right: 30px;
-    gap: 10px;
-    display: flex;
-    justify-content: flex-end; 
-    align-items: flex-start;
+.action-cell{
+    padding:16px 16px;
+    vertical-align: middle;
 }
+
+.action-wrapper{
+    display:flex;
+    justify-content: flex-end;
+    align-items:center;
+    gap:0px;
+}
+
 
 .menu-dots {
     font-size: 20px;
@@ -447,6 +457,11 @@ tbody td:nth-child(5) {
     cursor: pointer;
     padding-left: 20px;
     user-select: none;
+    font-size:22px;
+    font-weight:700;   /* bold */
+    color:#6b7280;
+    cursor:pointer;
+    user-select:none;
 }
 
 .btn.primary {
@@ -460,48 +475,49 @@ tbody td:nth-child(5) {
 
 
 input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-    color: grey;
-    border: 1px #ddd;
+    width: 17px;
+    height: 17px;
+    border-radius: 2px;
+    border: 1.5px #BABABA;
     accent-color: #4caf50;
-    /* margin-left: 8px; */
+    margin-left: 8px;
 }
 
-.dots-wrapper {
-    position: relative;
-    display: inline-block;
+.dots-wrapper{
+    position:relative;
+    display:flex;
+    align-items:center;
 }
 
-.dots-menu {
-    /* flex-direction: row;
-     padding: 10px; */
-    position: absolute;
-    top: 28px;
-    right: 0;
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 6px;
-    width: 120px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    display: none;
-    z-index: 10;
+.dots-menu{
+    position:absolute;
+    top:100%;
+    right:0;
+    margin-top:2px;
+    background:#fff;
+    border:1px solid #e5e7eb;
+    border-radius:8px;
+    padding:6px;
+    width:120px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    display:none;
+    z-index:10;
+    display:none;          
+    flex-direction:column; 
+    gap:4px; 
 }
+
 
 .dots-wrapper:hover .dots-menu {
-    display: block;
+    display: flex;
 }
 
 .dots-btn {
     width: 100%;
     background: none;
-    /* text-decoration: dashed; */
     border: none;
     padding: 8px 10px;
     text-align: left;
-    /* flex-direction: row;
-     padding: 10px; */
     font-size: 14px;
     cursor: pointer;
     border-radius: 6px;

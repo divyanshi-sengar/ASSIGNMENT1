@@ -17,6 +17,7 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Zin+Display&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -41,7 +42,7 @@
                         <small>Primary User</small>
                     </div>
 
-                    <span><img src="images/Icon Right.png" id="right-img" alt=""></span>
+                    <span><a href="#"><i id="right-img" class="fa-solid fa-chevron-down profile-arrow"></i></a></span>
                 </div>
 
                 <!-- -------------Navbar-->
@@ -95,7 +96,8 @@
         <div class="home">
             <!-- -----------------navbar  -->
             <div class="nav">
-                <p id="home">Home</p> <span><img src="images/Vector.png" alt=""></span><span>Documents</span>
+                <a href="#" id="home">Home</a> <span><img src="images/Vector.png" alt=""></span><span><a href="#"
+                        id="doc1-head">Documents</a></span>
 
             </div>
 
@@ -119,7 +121,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th><input type="checkbox"><span><img src="images/Icon Right.png" alt=""></span></th>
+                            <th><input type="checkbox"><span><i class="fa-solid fa-chevron-down header-arrow"></i></span></th>
                             <th>Document Name</th>
                             <th>Status</th>
                             <th>Last Modified</th>
@@ -139,16 +141,18 @@
                                 10/22/2024<br><span class="time">2:01 pm</span>
                             </td>
                             <td class="action-cell">
-                                <button class="btn">Sign now</button>
-                                <div class="dots-wrapper">
-                                    <span class="menu-dots">⋮</span>
-
-                                    <div class="dots-menu">
-                                        <button class="dots-btn edit">Edit</button>
-                                        <button class="dots-btn delete">Delete</button>
+                                <div class="action-wrapper">
+                                    <button class="btn">Sign now</button>
+                                    <div class="dots-wrapper">
+                                        <span class="menu-dots">⋮</span>
+                                        <div class="dots-menu">
+                                            <button class="dots-btn edit">Edit</button>
+                                            <button class="dots-btn delete">Delete</button>
+                                        </div>
                                     </div>
                                 </div>
                             </td>
+
                         </tr>
 
                         <!-- row-2 -->
@@ -157,22 +161,24 @@
                             <td class="doc-title">Title of Document Goes Here</td>
                             <td>
                                 <span class="badge badge-pending">Pending</span>
-                                <div class="subtext"><i>Waiting for </i> 1 person</div>
+                                <div class="subtext"><i>Waiting for</i> <i id="italic">1 person</i></div>
                             </td>
                             <td class="date">
                                 10/22/2024<br><span class="time">2:01 pm</span>
                             </td>
                             <td class="action-cell">
-                                <button class="btn">Preview</button>
-                                <div class="dots-wrapper">
-                                    <span class="menu-dots">⋮</span>
-
-                                    <div class="dots-menu">
-                                        <button class="dots-btn edit">Edit</button>
-                                        <button class="dots-btn delete">Delete</button>
+                                <div class="action-wrapper">
+                                    <button class="btn">Sign now</button>
+                                    <div class="dots-wrapper">
+                                        <span class="menu-dots">⋮</span>
+                                        <div class="dots-menu">
+                                            <button class="dots-btn edit">Edit</button>
+                                            <button class="dots-btn delete">Delete</button>
+                                        </div>
                                     </div>
                                 </div>
                             </td>
+
                         </tr>
                         <!-- row-3 -->
                         <tr>
@@ -180,22 +186,24 @@
                             <td class="doc-title">Title of Document Goes Here</td>
                             <td>
                                 <span class="badge badge-pending">Pending</span>
-                                <div class="subtext"><i>Waiting for </i> 2 people</div>
+                                <div class="subtext"><i>Waiting for </i> <i id="italic">2 people</i></div>
                             </td>
                             <td class="date">
                                 10/22/2024<br><span class="time">2:01 pm</span>
                             </td>
                             <td class="action-cell">
-                                <button class="btn">Preview</button>
-                                <div class="dots-wrapper">
-                                    <span class="menu-dots">⋮</span>
-
-                                    <div class="dots-menu">
-                                        <button class="dots-btn edit">Edit</button>
-                                        <button class="dots-btn delete">Delete</button>
+                                <div class="action-wrapper">
+                                    <button class="btn">Sign now</button>
+                                    <div class="dots-wrapper">
+                                        <span class="menu-dots">⋮</span>
+                                        <div class="dots-menu">
+                                            <button class="dots-btn edit">Edit</button>
+                                            <button class="dots-btn delete">Delete</button>
+                                        </div>
                                     </div>
                                 </div>
                             </td>
+
                         </tr>
 
                         <!-- row -4 -->
@@ -210,16 +218,18 @@
                                 10/22/2024<br><span class="time">2:01 pm</span>
                             </td>
                             <td class="action-cell">
-                                <button class="btn">Download PDF</button>
-                                <div class="dots-wrapper">
-                                    <span class="menu-dots">⋮</span>
-
-                                    <div class="dots-menu">
-                                        <button class="dots-btn edit">Edit</button>
-                                        <button class="dots-btn delete">Delete</button>
+                                <div class="action-wrapper">
+                                    <button class="btn">Sign now</button>
+                                    <div class="dots-wrapper">
+                                        <span class="menu-dots">⋮</span>
+                                        <div class="dots-menu">
+                                            <button class="dots-btn edit">Edit</button>
+                                            <button class="dots-btn delete">Delete</button>
+                                        </div>
                                     </div>
                                 </div>
                             </td>
+
                         </tr>
                         <!-- row-5-->
                         <tr>
@@ -232,16 +242,18 @@
                                 10/22/2024<br><span class="time">2:01 pm</span>
                             </td>
                             <td class="action-cell">
-                                <button class="btn">Download PDF</button>
-                                <div class="dots-wrapper">
-                                    <span class="menu-dots">⋮</span>
-
-                                    <div class="dots-menu">
-                                        <button class="dots-btn edit">Edit</button>
-                                        <button class="dots-btn delete">Delete</button>
+                                <div class="action-wrapper">
+                                    <button class="btn">Sign now</button>
+                                    <div class="dots-wrapper">
+                                        <span class="menu-dots">⋮</span>
+                                        <div class="dots-menu">
+                                            <button class="dots-btn edit">Edit</button>
+                                            <button class="dots-btn delete">Delete</button>
+                                        </div>
                                     </div>
                                 </div>
                             </td>
+
                         </tr>
 
                         <!-- row-6 -->
@@ -255,14 +267,14 @@
                                 10/22/2024<br><span class="time">2:01 pm</span>
                             </td>
                             <td class="action-cell">
-                                <button class="btn">Download PDF</button>
-                                <!-- ------------------hover functionality on dots -->
-                                <div class="dots-wrapper">
-                                    <span class="menu-dots">⋮</span>
-
-                                    <div class="dots-menu">
-                                        <button class="dots-btn edit">Edit</button>
-                                        <button class="dots-btn delete">Delete</button>
+                                <div class="action-wrapper">
+                                    <button class="btn">Sign now</button>
+                                    <div class="dots-wrapper">
+                                        <span class="menu-dots">⋮</span>
+                                        <div class="dots-menu">
+                                            <button class="dots-btn edit">Edit</button>
+                                            <button class="dots-btn delete">Delete</button>
+                                        </div>
                                     </div>
                                 </div>
                             </td>
