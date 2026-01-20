@@ -11,7 +11,7 @@ body {
 /* --------main container */
 .container {
     display: grid;
-    grid-template-columns: 371px 1fr;
+    grid-template-columns: 352px 1fr;
     min-height: 100vh;
     flex-direction: row;
 }
@@ -24,7 +24,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 371px;
+    width: 352px;
     height: 100%;
     padding:35px;
     border: 1px solid #EBEBEB;
@@ -66,13 +66,12 @@ body {
     padding-left: 15px
 }
 
-.user #right-img {
-    padding-left: 20px
+.user .user-arrow {
+    padding-left: 35px
 }
 
 
 .profile-arrow{
-    margin-left:12px;
     font-size:14px;
     color:#BABABA;
     cursor:pointer;
@@ -106,6 +105,7 @@ ul li {
 
 .menu-items {
     display: flex;
+    gap: 20px;
     padding: 15px;
     color: gray;
 }
@@ -122,7 +122,8 @@ li:hover {
 }
 
 .menu-items img {
-    width: 22px;
+    width: 24px;
+    height: 24px;
     filter: grayscale(100%) brightness(60%);
 }
 
@@ -197,7 +198,6 @@ li:hover {
     gap: 15px;
     color: gray;
     padding: 10px;
-    margin-bottom: 10px;
     position: static;
 }
 
@@ -301,9 +301,13 @@ table {
     border-collapse: collapse;
 }
 
+#headdiv{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
 
 .header-arrow{
-    margin-left:8px;
     font-size:14px;
     color:#BABABA;
     cursor:pointer;
@@ -332,7 +336,6 @@ th {
 
 th input[type="checkbox"] {
     vertical-align: top;
-    /* margin-right: 8px; */
 }
 
 th span img {
@@ -340,9 +343,8 @@ th span img {
 }
 
 tr td i {
-    Weight: 500;
+    font-weight: 500;
     color: #B5BDCD;
-    margin: 0 2px;
     font-size: 16px;
 }
 
@@ -354,6 +356,14 @@ tr td i {
     color: #436D7C;
     font-weight: 600;
     font-size: 16px;
+}
+
+thead th:nth-child(1) {
+  padding-left: 28px; 
+}
+
+tbody td:nth-child(1) {
+  padding-left: 28px; 
 }
 
 thead th:nth-child(3) {
@@ -394,8 +404,10 @@ tbody td:nth-child(5) {
 }
 
 .subtext {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
     font-size: 12px;
-    margin-top: 4px;
     color: #436D7C;
 }
 
@@ -483,9 +495,7 @@ input[type="checkbox"] {
     height: 17px;
     border-radius: 2px;
     border: 1.5px #BABABA;
-    /* accent-color: #4caf50; */
     accent-color: #1F4E5F;
-    margin-left: 8px;
 }
 
 .dots-wrapper{
@@ -498,7 +508,6 @@ input[type="checkbox"] {
     position:absolute;
     top:100%;
     right:0;
-    margin-top:2px;
     background:#fff;
     border:1px solid #e5e7eb;
     border-radius:8px;
