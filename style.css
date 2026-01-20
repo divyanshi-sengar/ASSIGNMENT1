@@ -137,6 +137,10 @@ li:hover {
     color: black;
 }
 
+#docs a{
+    color: #1F4451;
+}
+
 /* ------------contact css --------------*/
 
 .contact {
