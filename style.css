@@ -110,7 +110,7 @@ ul li {
     justify-content: flex-start;
     align-items: center;
     gap: 20px;
-    padding: 15px;
+    padding: 12px;
     color: gray;
 }
 
@@ -482,17 +482,18 @@ tbody td:nth-child(5) {
 
 .menu-dots {
     font-size: 20px;
-    color: #6b7280;
     cursor: pointer;
     padding-left: 20px;
     user-select: none;
     font-size:22px;
-    font-weight:700;   /* bold */
+    font-weight:700;   
     color:#6b7280;
     cursor:pointer;
     user-select:none;
     padding-left: 8px;
     padding-right: 8px;
+    border: none;
+    background-color: white;
 }
 
 .btn.primary {
