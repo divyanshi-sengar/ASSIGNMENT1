@@ -40,7 +40,17 @@
 
                     <!-- <span><a href="#"><i id="right-img" class="fa-solid fa-chevron-down profile-arrow"></i></a></span> -->
                     <div class="user-arrow">
-                        <a href="#"><i id="right-img" class="fa-solid fa-chevron-down profile-arrow"></i></a>
+                        <div id="arrowBtn"><a href="#"><button id="right-img"
+                                    class="fa-solid fa-chevron-down profile-arrow"></button></a></div>
+
+                        <div class="logout" id="logoutBox">
+                            <button class="logoutbtn">
+                                <span>
+                                    <img src="/images/logout-svgrepo-com.svg" alt="">
+                                </span>
+                                Logout
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -105,10 +115,41 @@
                 <strong id="heading">My Documents</strong>
 
                 <div class="search-right">
-                    <button class="btn1 add-btn">+ Add</button>
+                    <button class="btn1 add-btn" id="addBtn">+ Add</button>
+
+                    <div class="modal" id="docModal">
+                        <div class="modal-content">
+                            <h3>Add Document</h3>
+
+                            <form id="docForm" method="post">
+                                <label>Document Name</label>
+                                <input type="text" id="docinput" placeholder="Enter document name" required />
+
+                                <label>Status</label>
+                                <select id="statusSelect" required>
+                                    <option value="">Select status</option>
+                                    <option value="sign">Needs Signing</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="complete">Completed</option>
+                                </select>
+
+                                <div class="persons-field" id="personsField">
+                                    <label>No. of Persons Waiting</label>
+                                    <input type="number" id="personsInput" min="1" placeholder="Enter number" />
+                                </div>
+
+
+                                <div class="actions">
+                                    <button type="button" id="cancelBtn" class="btn-outline">Cancel</button>
+                                    <button type="submit" class="btn-primary">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
 
                     <div class="searchbar">
-                        <input type="text" placeholder="Search Documents">
+                        <input type="text" id="searchdata" placeholder="Search Documents">
                         <span><img src="images/Layer_1.svg" alt=""></span>
                     </div>
                 </div>
@@ -129,160 +170,8 @@
                         </tr>
                     </thead>
 
-                    <tbody>
-                        <!-- row 1 -->
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td class="doc-title">Title of Document Goes Here</td>
-                            <td>
-                                <div class="badge badge-sign">Needs Signing</div>
-                            </td>
-                            <td class="date">
-                                10/22/2024<br><span class="time">2:01 pm</span>
-                            </td>
-                            <td class="action-cell">
-                                <div class="action-wrapper">
-                                    <button class="btn">Sign now</button>
-                                    <div class="dots-wrapper">
-                                        <button class="menu-dots">⋮</button>
-                                        <div class="dots-menu">
-                                            <button class="dots-btn edit">Edit</button>
-                                            <button class="dots-btn delete">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
+                    <tbody id="records">
 
-                        </tr>
-
-                        <!-- row-2 -->
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td class="doc-title">Title of Document Goes Here</td>
-                            <td>
-                                <div class="italictext">
-                                    <div class="pending"><div class="badge badge-pending">Pending</div></div>
-                                    <div class="subtext"><i>Waiting for</i> <i id="italic">1 person</i></div>
-                                </div>
-                            </td>
-                            <td class="date">
-                                10/22/2024<br><span class="time">2:01 pm</span>
-                            </td>
-                            <td class="action-cell">
-                                <div class="action-wrapper">
-                                    <button class="btn">Preview</button>
-                                    <div class="dots-wrapper">
-                                        <button class="menu-dots">⋮</button>
-                                        <div class="dots-menu">
-                                            <button class="dots-btn edit">Edit</button>
-                                            <button class="dots-btn delete">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-
-                        </tr>
-                        <!-- row-3 -->
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td class="doc-title">Title of Document Goes Here</td>
-                            <td>
-                                <div class="italictext">
-                                    <div class="pending"><span class="badge badge-pending">Pending</span></div>
-                                    <div class="subtext"><i>Waiting for</i> <i id="italic">1 person</i></div>
-                                </div>
-                            </td>
-                            <td class="date">
-                                10/22/2024<br><span class="time">2:01 pm</span>
-                            </td>
-                            <td class="action-cell">
-                                <div class="action-wrapper">
-                                    <button class="btn">Preview</button>
-                                    <div class="dots-wrapper">
-                                        <button class="menu-dots">⋮</button>
-                                        <div class="dots-menu">
-                                            <button class="dots-btn edit">Edit</button>
-                                            <button class="dots-btn delete">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-
-                        </tr>
-
-                        <!-- row -4 -->
-
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td class="doc-title">Title of Document Goes Here</td>
-                            <td>
-                                <span class="badge badge-complete">Completed</span>
-                            </td>
-                            <td class="date">
-                                10/22/2024<br><span class="time">2:01 pm</span>
-                            </td>
-                            <td class="action-cell">
-                                <div class="action-wrapper">
-                                    <button class="btn">Download PDF</button>
-                                    <div class="dots-wrapper">
-                                        <button class="menu-dots">⋮</button>
-                                        <div class="dots-menu">
-                                            <button class="dots-btn edit">Edit</button>
-                                            <button class="dots-btn delete">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-
-                        </tr>
-                        <!-- row-5-->
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td class="doc-title">Title of Document Goes Here</td>
-                            <td>
-                                <span class="badge badge-complete">Completed</span>
-                            </td>
-                            <td class="date">
-                                10/22/2024<br><span class="time">2:01 pm</span>
-                            </td>
-                            <td class="action-cell">
-                                <div class="action-wrapper">
-                                    <button class="btn">Download PDF</button>
-                                    <div class="dots-wrapper">
-                                        <button class="menu-dots">⋮</button>
-                                        <div class="dots-menu">
-                                            <button class="dots-btn edit">Edit</button>
-                                            <button class="dots-btn delete">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-
-                        </tr>
-
-                        <!-- row-6 -->
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td class="doc-title">Title of Document Goes Here</td>
-                            <td>
-                                <span class="badge badge-complete">Completed</span>
-                            </td>
-                            <td class="date">
-                                10/22/2024<br><span class="time">2:01 pm</span>
-                            </td>
-                            <td class="action-cell">
-                                <div class="action-wrapper">
-                                    <button class="btn">Download PDF</button>
-                                    <div class="dots-wrapper">
-                                        <button class="menu-dots">⋮</button>
-                                        <div class="dots-menu">
-                                            <button class="dots-btn edit">Edit</button>
-                                            <button class="dots-btn delete">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
 
@@ -291,5 +180,6 @@
     </div>
 
 </body>
+<script src="script.js"></script>
 
 </html>
