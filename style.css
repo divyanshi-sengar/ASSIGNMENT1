@@ -666,7 +666,7 @@ tbody tr{
   font-weight: 500;
 }
 
-.modal {
+.docForm {
   display: none;
   position: fixed;
   inset: 0;
@@ -677,32 +677,32 @@ tbody tr{
   font-family: "Inter", sans-serif;
 }
 
-.modal.active {
+.docForm.active {
   display: flex;
 }
 
-.modal-content {
+.form-content {
   background: #f3f2f1;
   width: 400px;
-  padding:30px;
+  padding: 30px;
   border-radius: 8px;
 }
 
-
-.modal-content label {
+.form-content label {
   font-size: 14px;
   margin-top: 10px;
   display: block;
 }
 
-.modal-content input,
-.modal-content select {
+.form-content input,
+.form-content select {
   width: 100%;
   padding: 10px;
   margin-top: 4px;
   border-radius: 6px;
   border: 1px solid #c7d2fe;
 }
+
 
 .actions {
   display: flex;

@@ -117,11 +117,11 @@
                 <div class="search-right">
                     <button class="btn1 add-btn" id="addBtn">+ Add</button>
 
-                    <div class="modal" id="docModal">
-                        <div class="modal-content">
+                    <div class="docForm" id="formData">
+                        <div class="form-content">
                             <h3>Add Document</h3>
 
-                            <form id="docForm" method="post">
+                            <form id="docForm" method="post" autocomplete="off">
                                 <label>Document Name</label>
                                 <input type="text" id="docinput" placeholder="Enter document name" required />
 
@@ -130,7 +130,7 @@
                                     <option value="">Select status</option>
                                     <option value="sign">Needs Signing</option>
                                     <option value="pending">Pending</option>
-                                    <option value="complete">Completed</option>
+                                    <option value="complete" >Completed</option>
                                 </select>
 
                                 <div class="persons-field" id="personsField">
@@ -149,7 +149,7 @@
 
 
                     <div class="searchbar">
-                        <input type="text" id="searchdata" placeholder="Search Documents">
+                        <input type="text"  id="searchdata" placeholder="Search Documents" autocomplete="off">
                         <span><img src="images/Layer_1.svg" alt=""></span>
                     </div>
                 </div>
@@ -171,7 +171,7 @@
                     </thead>
 
                     <tbody id="records">
-
+                       
                     </tbody>
                 </table>
 

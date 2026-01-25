@@ -3,7 +3,7 @@ const arrowBtn = document.getElementById("arrowBtn");
 const logoutBox = document.getElementById("logoutBox");
 let records = document.querySelector('#records');
 
-let form = document.getElementById("docForm");
+let form = document.querySelector("#docForm");
 const statusSelect = document.getElementById("statusSelect");
 const personsField = document.getElementById("personsField");
 const personsInput = document.getElementById("personsInput");
@@ -22,7 +22,7 @@ let dots_menu = document.querySelector('.dots-menu');
 let dot_wrapper = document.querySelector('.dots-wrapper');
 
 const addBtn = document.getElementById("addBtn");
-const modal = document.getElementById("docModal");
+const formData = document.getElementById("formData");
 const cancelBtn = document.getElementById("cancelBtn");
 arrowBtn.addEventListener("click", () => {
     logoutBox.classList.toggle("active");
@@ -45,19 +45,19 @@ records.addEventListener("click", function (e) {
 
 
 addBtn.addEventListener("click", () => {
-    modal.classList.add("active");
+    formData.classList.add("active");
     form.reset();
 
 });
 
 cancelBtn.addEventListener("click", () => {
-    modal.classList.remove("active");
+    formData.classList.remove("active");
     form.reset();
 });
 
-modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-        modal.classList.remove("active");
+formData.addEventListener("click", (e) => {
+    if (e.target === formData) {
+        formData.classList.remove("active");
     }
 });
 
@@ -74,16 +74,16 @@ statusSelect.addEventListener("change", function () {
 });
 
 
-// form.addEventListener("submit", function (e) {
-//     e.preventDefault();
+form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-//     alert("submitted");
+    // alert("submitted");
 
-//     form.reset();
+    // form.reset();
 
-//     personsField.style.display = "none";
-//     personsInput.removeAttribute("required");
-// });
+    personsField.style.display = "none";
+    personsInput.removeAttribute("required");
+});
 
 
 //   form-data
@@ -123,7 +123,7 @@ form.addEventListener("submit", function (evt) {
     saveData(userArray);
     displayData();
     form.reset();
-    modal.classList.remove("active");
+    formData.classList.remove("active");
 });
 
 
@@ -262,7 +262,7 @@ function editData(id) {
     let user = userArray[id];
     // console.log(user)
 
-    modal.classList.add("active");
+    formData.classList.add("active");
 
     doc.value = user.name;
     statusSelect.value = user.input;
