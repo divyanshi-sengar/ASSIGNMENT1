@@ -3,16 +3,13 @@ const arrowBtn = document.getElementById("arrowBtn");
 const logoutBox = document.getElementById("logoutBox");
 let records = document.querySelector('#records');
 
-let form = document.querySelector("#docForm");
+let form = document.querySelector("#mainForm");
 const statusSelect = document.getElementById("statusSelect");
 const personsField = document.getElementById("personsField");
 const personsInput = document.getElementById("personsInput");
 const dateinput = document.getElementById('dateinput');
 const searchdata = document.getElementById('searchdata');
 
-
-let today = new Date().toISOString().split("T")[0];
-let date = today.split("-").reverse().join("-");
 
 let doc = document.querySelector('#docinput');
 let savebtn = document.querySelector('.btn-primary');
@@ -24,6 +21,12 @@ let dot_wrapper = document.querySelector('.dots-wrapper');
 const addBtn = document.getElementById("addBtn");
 const formData = document.getElementById("formData");
 const cancelBtn = document.getElementById("cancelBtn");
+
+let userArray = JSON.parse(localStorage.getItem('users'))
+    || [];
+let edit_id = null;
+displayData();
+
 arrowBtn.addEventListener("click", () => {
     logoutBox.classList.toggle("active");
 });
@@ -37,11 +40,6 @@ records.addEventListener("click", function (e) {
             menu.style.display === "flex" ? "none" : "flex";
     }
 });
-
-// menu_dots.addEventListener("click",function(){
-//     dots_menu.style.display="flex";
-//     dot_wrapper.style.display="flex;"
-// })
 
 
 addBtn.addEventListener("click", () => {
@@ -61,7 +59,6 @@ formData.addEventListener("click", (e) => {
     }
 });
 
-// Show / Hide on status change
 statusSelect.addEventListener("change", function () {
     if (this.value === "pending") {
         personsField.style.display = "block";
@@ -77,10 +74,6 @@ statusSelect.addEventListener("change", function () {
 form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    // alert("submitted");
-
-    // form.reset();
-
     personsField.style.display = "none";
     personsInput.removeAttribute("required");
 });
@@ -88,23 +81,15 @@ form.addEventListener("submit", function (e) {
 
 //   form-data
 
-
-
-let userArray = JSON.parse(localStorage.getItem('users'))
-    || [];
-let edit_id = null;
-
-displayData();
-//  console.log("useArray initially: ", userArray)
-
-// let userArray=[];
-
 form.addEventListener("submit", function (evt) {
     evt.preventDefault();
 
     let docinput = document.querySelector('#docinput').value;
     let selectinput = document.querySelector('#statusSelect').value;
     let personsinput = document.querySelector('#personsInput').value;
+
+    let now = new Date();
+    let date = now.toLocaleDateString("en-GB");
 
     let newObj = {
         name: docinput,
@@ -171,7 +156,7 @@ searchdata.addEventListener("input", function () {
                                 </div>
                             </td>
                             <td class="date">
-                                ${date}<br><span class="time">2:01 pm</span>
+                                ${user.date}<br><span class="time">2:01 pm</span>
                             </td>
                             <td class="action-cell">
                                 <div class="action-wrapper">
@@ -236,7 +221,7 @@ function displayData() {
                                 </div>
                             </td>
                             <td class="date">
-                                ${date}<br><span class="time">2:01 pm</span>
+                                ${user.date}<br><span class="time">2:01 pm</span>
                             </td>
                             <td class="action-cell">
                                 <div class="action-wrapper">
