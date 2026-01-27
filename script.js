@@ -128,11 +128,6 @@ searchdata.addEventListener("input", function () {
     let titledata = '';
     newData.forEach((user, i) => {
 
-        if (user.input === 'pending') {
-
-        }
-
-
         let statusText = "";
         if (user.input === "sign") statusText = "Needs Signing";
         if (user.input === "pending") statusText = "Pending";
@@ -181,16 +176,6 @@ function displayData() {
     let statement = '';
 
     userArray.forEach((user, i) => {
-        // console.log(user.input);
-        // let innertxt=document.getElementById('subtext');
-        // if(user.input==="pending"){
-        //     innertxt.style.display="block";
-        // }
-        // else{
-        //     innertxt.style.display="none";
-        // }
-
-
         if (user.input === 'pending') {
 
         }
