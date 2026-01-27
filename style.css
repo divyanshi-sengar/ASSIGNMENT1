@@ -372,8 +372,8 @@
      border-radius: 8px;
      min-width: 1000px;
      max-height: 571px;
-     /* overflow-x: hidden; */
-     /* overflow-y: visible; */
+     overflow-x: hidden;
+     overflow-y: visible;
      border: 0.5px solid #B5BDCD
  }
 
