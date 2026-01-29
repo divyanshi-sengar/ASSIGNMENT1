@@ -55,6 +55,7 @@ cancelBtn.addEventListener("click", () => {
 });
 
 formData.addEventListener("click", (e) => {
+    // console.log(e);
     if (e.target === formData) {
         formData.classList.remove("active");
     }
@@ -71,19 +72,12 @@ statusSelect.addEventListener("change", function () {
     }
 });
 
-
-form.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    personsField.style.display = "none";
-    personsInput.removeAttribute("required");
-});
-
-
-//   form-data
+//form-data
 
 form.addEventListener("submit", function (evt) {
     evt.preventDefault();
+    personsField.style.display = "none";
+    personsInput.removeAttribute("required");
 
     let docinput = document.querySelector('#docinput').value;
     let selectinput = document.querySelector('#statusSelect').value;
