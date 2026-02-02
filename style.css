@@ -415,14 +415,15 @@
 
  .statusselect{
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
+    align-items: center;
     gap: 12px;
  }
 
  #selectstatus{
     border: 1.5px solid #B5BDCD;
     border-radius: 8px;
-    padding: 4px;
+    padding: 4px 6px ;
  }
 
  #selectstatus:hover {
