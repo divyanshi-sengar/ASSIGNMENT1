@@ -1,9 +1,9 @@
 
 const arrowBtn = document.getElementById("arrowBtn");
 const logoutBox = document.getElementById("logoutBox");
-let records = document.querySelector('#records');
+const records = document.querySelector('#records');
 
-let form = document.querySelector("#mainForm");
+const form = document.querySelector("#mainForm");
 const statusSelect = document.getElementById("statusSelect");
 const personsField = document.getElementById("personsField");
 const personsInput = document.getElementById("personsInput");
@@ -11,12 +11,12 @@ const dateinput = document.getElementById('dateinput');
 const searchdata = document.getElementById('searchdata');
 
 
-let doc = document.querySelector('#docinput');
-let savebtn = document.querySelector('.btn-primary');
-let menu_dots = document.querySelector('.menu-dots');
-let dots_menu = document.querySelector('.dots-menu');
+const doc = document.querySelector('#docinput');
+const savebtn = document.querySelector('.btn-primary');
+const menu_dots = document.querySelector('.menu-dots');
+const dots_menu = document.querySelector('.dots-menu');
 
-let dot_wrapper = document.querySelector('.dots-wrapper');
+const dot_wrapper = document.querySelector('.dots-wrapper');
 
 const addBtn = document.getElementById("addBtn");
 const formData = document.getElementById("formData");
@@ -59,6 +59,17 @@ formData.addEventListener("click", (e) => {
     if (e.target === formData) {
         formData.classList.remove("active");
     }
+});
+
+window.addEventListener("click", (e) => {
+    if (!logoutBox.contains(e.target) && !arrowBtn.contains(e.target)) {
+        logoutBox.classList.remove("active");
+    }
+});
+
+logoutBox.addEventListener("click", (e) => {
+    e.stopPropagation(); 
+    logoutBox.classList.toggle("active");
 });
 
 statusSelect.addEventListener("change", function () {
