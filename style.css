@@ -266,6 +266,8 @@
      min-width: 1150px;
  }
 
+ /* navbar section */
+
  .nav {
      display: flex;
      gap: 15px;
