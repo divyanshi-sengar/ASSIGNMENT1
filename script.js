@@ -22,6 +22,12 @@ const addBtn = document.getElementById("addBtn");
 const formData = document.getElementById("formData");
 const cancelBtn = document.getElementById("cancelBtn");
 
+const statusselect=document.getElementsByClassName('statusselect');
+const selectstatus=document.getElementById('selectstatus');
+
+
+
+
 let userArray = JSON.parse(localStorage.getItem('users'))
     || [];
 
@@ -47,6 +53,9 @@ addBtn.addEventListener("click", () => {
     formData.classList.add("active");
     form.reset();
 
+    selectstatus.value="all";
+
+    displayData();
 });
 
 cancelBtn.addEventListener("click", () => {
@@ -132,6 +141,8 @@ function saveData(userArray) {
 
 
 searchdata.addEventListener("input", function () {
+    selectstatus.value="all";
+
     const newData = userArray.filter((user, i) => {
         return user.name.toLowerCase().includes(searchdata.value);
     })
@@ -218,7 +229,30 @@ function userTable(userdata) {
 }
 
 
+// filtering on basis of status
 
+selectstatus.addEventListener("change",function(){
+    let statusvalue=selectstatus.value;
+
+    if(statusvalue==="all"){
+        displayData();
+    }else if(statusvalue==="sign"){
+        const signArray=userArray.filter(user=>{
+            return user.input==="sign";
+        })
+        userTable(signArray);
+    }else if(statusvalue==="pending"){
+         const pendingArray=userArray.filter(user=>{
+            return user.input==="pending";
+        })
+        userTable(pendingArray);
+    }else if(statusvalue==="complete"){
+         const completeArray=userArray.filter(user=>{
+            return user.input==="complete";
+        })
+        userTable(completeArray);
+    }
+})
 
 
 
