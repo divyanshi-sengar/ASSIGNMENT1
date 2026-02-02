@@ -542,6 +542,8 @@
      font-family: "Inter", sans-serif;
  }
 
+ /* badge-button css */
+
  .badge {
      display: inline-block;
      padding: 4px 10px;
