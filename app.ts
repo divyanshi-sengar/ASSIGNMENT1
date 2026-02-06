@@ -1,37 +1,43 @@
+// console.log("hello")
 
-const arrowBtn = document.getElementById("arrowBtn");
-const logoutBox = document.getElementById("logoutBox");
-const records = document.querySelector('#records');
+const arrowBtn=document.getElementById('arrowBtn') as HTMLButtonElement;
+const logoutBox=document.getElementById('logoutBox') as HTMLElement;
 
-const form = document.querySelector("#mainForm");
-const statusSelect = document.getElementById("statusSelect");
-const personsField = document.getElementById("personsField");
-const personsInput = document.getElementById("personsInput");
-const dateinput = document.getElementById('dateinput');
-const searchdata = document.getElementById('searchdata');
+const records=document.querySelector('#records') as HTMLElement;
+const form=document.querySelector("#mainForm") as HTMLFormElement;
 
+const statusSelect=document.getElementById('statusSelect') as HTMLSelectElement;
+const personsField=document.getElementById("personsField") as HTMLElement;
+const personsInput=document.getElementById("personsInput") as HTMLInputElement;
+const searchdata=document.getElementById('searchdata') as HTMLInputElement;
 
-const doc = document.querySelector('#docinput');
-const savebtn = document.querySelector('.btn-primary');
-const menu_dots = document.querySelector('.menu-dots');
-const dots_menu = document.querySelector('.dots-menu');
+const doc=document.getElementById('docinput') as HTMLInputElement;
+const savebtn=document.querySelector('.btn-primary') as HTMLButtonElement;
 
-const dot_wrapper = document.querySelector('.dots-wrapper');
+const menu_dots=document.querySelector('.menu-dots') as HTMLButtonElement;
+const dots_menu=document.querySelector('.dots-menu') as HTMLDivElement;
 
-const addBtn = document.getElementById("addBtn");
-const formData = document.getElementById("formData");
-const cancelBtn = document.getElementById("cancelBtn");
+const dot_wrapper=document.querySelector('.dots-wrapper') as HTMLDivElement;
 
-const statusselect=document.getElementsByClassName('statusselect');
-const selectstatus=document.getElementById('selectstatus');
+const addBtn=document.getElementById("addBtn") as HTMLButtonElement;
+const formData=document.getElementById("formData") as HTMLDivElement;
+const cancelBtn=document.getElementById('cancelBtn') as HTMLButtonElement;
 
+const statusselect=document.querySelector('.selectstatus') as  HTMLSelectElement;
+const selectstatus=document.getElementById("selectstatus") as HTMLSelectElement;
 
+interface User{
+    id:number,
+    name:string,
+    input:string,
+    date:string,
+    time:string,
+    personInput:string
+}
 
+let userArray:User[]=JSON.parse(localStorage.getItem('users') || "[]");
 
-let userArray = JSON.parse(localStorage.getItem('users'))
-    || [];
-
-let edit_id = null;
+let edit_id:number | null=null;
 displayData();
 
 arrowBtn.addEventListener("click", () => {
@@ -39,9 +45,11 @@ arrowBtn.addEventListener("click", () => {
 });
 
 records.addEventListener("click", function (e) {
-    if (e.target.classList.contains("menu-dots")) {
-        let wrapper = e.target.closest(".dots-wrapper");
-        let menu = wrapper.querySelector(".dots-menu");
+    const target=e.target as HTMLElement;
+
+    if (target.classList.contains("menu-dots")) {
+        let wrapper = target.closest(".dots-wrapper")!;
+        let menu =<HTMLDivElement> wrapper.querySelector(".dots-menu")!;
 
         menu.style.display =
             menu.style.display === "flex" ? "none" : "flex";
@@ -55,7 +63,7 @@ addBtn.addEventListener("click", () => {
 
     selectstatus.value="all";
 
-    displayData();
+    // displayData();
 });
 
 cancelBtn.addEventListener("click", () => {
@@ -70,16 +78,17 @@ formData.addEventListener("click", (e) => {
     }
 });
 
-window.addEventListener("click", (e) => {
-    if (!logoutBox.contains(e.target) && !arrowBtn.contains(e.target)) {
-        logoutBox.classList.remove("active");
-    }
-});
+// window.addEventListener("click", (e) => {
+//     const target=e.target as HTMLElement;
+//     if (!logoutBox.contains(target) && !arrowBtn.contains(target)) {
+//         logoutBox.classList.remove("active");
+//     }
+// });
 
-logoutBox.addEventListener("click", (e) => {
-    e.stopPropagation(); 
-    logoutBox.classList.toggle("active");
-});
+// logoutBox.addEventListener("click", (e) => {
+//     e.stopPropagation(); 
+//     logoutBox.classList.toggle("active");
+// });
 
 statusSelect.addEventListener("change", function () {
     if (this.value === "pending") {
@@ -92,22 +101,20 @@ statusSelect.addEventListener("change", function () {
     }
 });
 
-//form-data
-
 form.addEventListener("submit", function (evt) {
     evt.preventDefault();
     personsField.style.display = "none";
     personsInput.removeAttribute("required");
 
-    let docinput = document.querySelector('#docinput').value;
-    let selectinput = document.querySelector('#statusSelect').value;
-    let personsinput = document.querySelector('#personsInput').value;
+    let docinput = (document.querySelector('#docinput') as HTMLInputElement).value;
+    let selectinput =( document.querySelector('#statusSelect') as HTMLInputElement).value;
+    let personsinput = (document.querySelector('#personsInput') as HTMLInputElement).value;
 
     let now = new Date();
     let date = now.toLocaleDateString("en-GB");
     let Time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
 
-    let newObj = {
+    let newObj:User = {
         id: Date.now(),
         name: docinput,
         input: selectinput,
@@ -131,14 +138,12 @@ form.addEventListener("submit", function (evt) {
     formData.classList.remove("active");
 });
 
-
-function saveData(userArray) {
+function saveData(userArray:User[]):void {
     const str = JSON.stringify(userArray);
     localStorage.setItem('users', str);
 
     // console.log(userArray);
 }
-
 
 searchdata.addEventListener("input", function () {
     selectstatus.value="all";
@@ -150,16 +155,22 @@ searchdata.addEventListener("input", function () {
     userTable(newData);
 })
 
-
-function displayData() {
+function displayData():void {
     userTable(userArray);
 }
 
-function editData(id) {
-    let user = userArray.find(user => user.id === id);
+function editData(id:number):void {
+
+     document.querySelectorAll(".dots-menu").forEach(menu => {
+        (menu as HTMLElement).style.display = "none";
+    });
+
+    let user = (userArray.find(user => user.id === id))!;
+    if(!user) return;
     edit_id = id;
 
     // console.log(user)
+    // dot_wrapper.classList.remove("dots-menu");
 
     formData.classList.add("active");
 
@@ -174,14 +185,14 @@ function editData(id) {
     }
 }
 
-
-function deleteInfo(id) {
+function deleteInfo(id:number):void {
     userArray = userArray.filter(user =>  user.id !== id )
     saveData(userArray);
     displayData();
 }
 
-function userTable(userdata) {
+
+function userTable(userdata:User[]) :void{
     let titledata = '';
     userdata.forEach((user) => {
 
@@ -253,12 +264,4 @@ selectstatus.addEventListener("change",function(){
         userTable(completeArray);
     }
 })
-
-
-
-
-
-
-
-
 
