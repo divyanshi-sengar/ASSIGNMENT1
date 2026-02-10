@@ -658,6 +658,13 @@
  }
 
 
+tbody tr:last-child .dots-menu{
+    top: 
+    auto;
+     bottom: 100%;
+ 
+}
+
  .dots-btn {
      width: 100%;
      background: none;
