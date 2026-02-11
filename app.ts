@@ -1,198 +1,239 @@
 // console.log("hello")
 
-const arrowBtn=document.getElementById('arrowBtn') as HTMLButtonElement;
-const logoutBox=document.getElementById('logoutBox') as HTMLElement;
+const arrowBtn = document.getElementById('arrowBtn');
+const logoutBox = document.getElementById('logoutBox');
 
-const records=document.querySelector('#records') as HTMLElement;
-const form=document.querySelector("#mainForm") as HTMLFormElement;
+const records = document.querySelector('#records');
+const form = document.querySelector("#mainForm");
 
-const statusSelect=document.getElementById('statusSelect') as HTMLSelectElement;
-const personsField=document.getElementById("personsField") as HTMLElement;
-const personsInput=document.getElementById("personsInput") as HTMLInputElement;
-const searchdata=document.getElementById('searchdata') as HTMLInputElement;
+const statusSelect = document.getElementById('statusSelect');
+const personsField = document.getElementById("personsField");
+const personsInput = document.getElementById("personsInput");
+const searchdata = document.getElementById('searchdata');
 
-const doc=document.getElementById('docinput') as HTMLInputElement;
-const savebtn=document.querySelector('.btn-primary') as HTMLButtonElement;
+const doc = document.getElementById('docinput');
+const savebtn = document.querySelector('.btn-primary');
 
-const menu_dots=document.querySelector('.menu-dots') as HTMLButtonElement;
-const dots_menu=document.querySelector('.dots-menu') as HTMLDivElement;
+const menu_dots = document.querySelector('.menu-dots');
+const dots_menu = document.querySelector('.dots-menu');
 
-const dot_wrapper=document.querySelector('.dots-wrapper') as HTMLDivElement;
+const dot_wrapper = document.querySelector('.dots-wrapper');
 
-const addBtn=document.getElementById("addBtn") as HTMLButtonElement;
-const formData=document.getElementById("formData") as HTMLDivElement;
-const cancelBtn=document.getElementById('cancelBtn') as HTMLButtonElement;
+const addBtn = document.getElementById("addBtn");
+const formData = document.getElementById("formData");
+const cancelBtn = document.getElementById('cancelBtn');
 
-const statusselect=document.querySelector('.selectstatus') as  HTMLSelectElement;
-const selectstatus=document.getElementById("selectstatus") as HTMLSelectElement;
+const statusselect = document.querySelector('.selectstatus');
+const selectstatus = document.getElementById("selectstatus");
 
-interface User{
-    id:number,
-    name:string,
-    input:string,
-    date:string,
-    time:string,
-    personInput:string
+type Status = "sign" | "pending" | "complete";
+
+interface User {
+    id: number,
+    name: string,
+    input: Status,
+    date: string,
+    time: string,
+    personInput: string
 }
 
-let userArray:User[]=JSON.parse(localStorage.getItem('users') || "[]");
+let userArray: User[] = JSON.parse(localStorage.getItem('users') || "[]");
 
-let edit_id:number | null=null;
+let edit_id: number | null = null;
 displayData();
 
-arrowBtn.addEventListener("click", () => {
-    logoutBox.classList.toggle("active");
+if (arrowBtn && logoutBox) {
+    arrowBtn.addEventListener("click", () => {
+        logoutBox.classList.toggle("active");
+    });
+}
+
+if (records) {
+    records.addEventListener("click", function (e) {
+        const dot = (e.target as HTMLElement).closest(".menu-dots");
+        if (!dot) return;
+
+        e.stopPropagation();
+
+        const wrapper = dot.closest(".dots-wrapper");
+        const menu = wrapper?.querySelector(".dots-menu") as HTMLElement | null;
+        if (!menu) return;
+
+        document.querySelectorAll(".dots-menu").forEach(menudot=> {
+            (menudot as HTMLElement).style.display = "none";
+        });
+
+        menu.style.display = "flex";
+    });
+}
+
+window.addEventListener("click", () => {
+    document.querySelectorAll(".dots-menu").forEach(menu => {
+        (menu as HTMLElement).style.display = "none";
+    });
 });
 
-records.addEventListener("click", function (e) {
-    const target=e.target as HTMLElement;
 
-    if (target.classList.contains("menu-dots")) {
-        let wrapper = target.closest(".dots-wrapper")!;
-        let menu =<HTMLDivElement> wrapper.querySelector(".dots-menu")!;
+if (addBtn && formData && form && selectstatus instanceof HTMLSelectElement) {
+    addBtn.addEventListener("click", () => {
+        formData.classList.add("active");
+        if (form instanceof HTMLFormElement) {
+            form.reset();
+        }
+        selectstatus.value = "all";
+        displayData();
+    });
+}
 
-        menu.style.display =
-            menu.style.display === "flex" ? "none" : "flex";
-    }
-});
-
-
-addBtn.addEventListener("click", () => {
-    formData.classList.add("active");
-    form.reset();
-
-    selectstatus.value="all";
-
-    // displayData();
-});
-
-cancelBtn.addEventListener("click", () => {
-    formData.classList.remove("active");
-    form.reset();
-});
-
-formData.addEventListener("click", (e) => {
-    // console.log(e);
-    if (e.target === formData) {
+if (cancelBtn && formData && form) {
+    cancelBtn.addEventListener("click", () => {
         formData.classList.remove("active");
-    }
-});
+        if (form instanceof HTMLFormElement) {
+            form.reset();
+        }
+    });
+}
 
-// window.addEventListener("click", (e) => {
-//     const target=e.target as HTMLElement;
-//     if (!logoutBox.contains(target) && !arrowBtn.contains(target)) {
-//         logoutBox.classList.remove("active");
-//     }
-// });
+if (formData) {
+    formData.addEventListener("click", (e) => {
+        // console.log(e);
+        if (e.target === formData) {
+            formData.classList.remove("active");
+        }
+    });
+}
 
-// logoutBox.addEventListener("click", (e) => {
-//     e.stopPropagation(); 
-//     logoutBox.classList.toggle("active");
-// });
 
-statusSelect.addEventListener("change", function () {
-    if (this.value === "pending") {
-        personsField.style.display = "block";
-        personsInput.setAttribute("required", "true");
-    } else {
+if (statusSelect instanceof HTMLSelectElement &&
+    personsField instanceof HTMLInputElement && 
+    personsInput instanceof HTMLInputElement) {
+    statusSelect.addEventListener("change", function () {
+        if (statusSelect.value === "pending") {
+            personsField.style.display = "block";
+            personsInput.setAttribute("required", "true");
+        } else {
+            personsField.style.display = "none";
+            personsInput.removeAttribute("required");
+            personsInput.value = "";
+        }
+    });
+}
+
+
+if (form instanceof HTMLFormElement &&
+    formData instanceof HTMLElement &&
+    doc instanceof HTMLInputElement &&
+    personsInput instanceof HTMLInputElement &&
+    statusSelect instanceof HTMLSelectElement &&
+    personsField instanceof HTMLElement) {
+    form.addEventListener("submit", function (evt) {
+        evt.preventDefault();
         personsField.style.display = "none";
         personsInput.removeAttribute("required");
-        personsInput.value = "";
-    }
-});
 
-form.addEventListener("submit", function (evt) {
-    evt.preventDefault();
-    personsField.style.display = "none";
-    personsInput.removeAttribute("required");
+        let docinput = doc.value;
+        let selectinput = statusSelect.value;
+        let personsinput = personsInput.value;
 
-    let docinput = (document.querySelector('#docinput') as HTMLInputElement).value;
-    let selectinput =( document.querySelector('#statusSelect') as HTMLInputElement).value;
-    let personsinput = (document.querySelector('#personsInput') as HTMLInputElement).value;
+        if (
+            selectinput !== "sign" &&
+            selectinput !== "pending" &&
+            selectinput !== "complete"
+        ) return;
 
-    let now = new Date();
-    let date = now.toLocaleDateString("en-GB");
-    let Time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+        let now = new Date();
+        let date = now.toLocaleDateString("en-GB");
+        let Time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
 
-    let newObj:User = {
-        id: Date.now(),
-        name: docinput,
-        input: selectinput,
-        date: date,
-        time: Time,
-        personInput: personsinput
-    };
+        let newObj: User = {
+            id: Date.now(),
+            name: docinput,
+            input: selectinput,
+            date: date,
+            time: Time,
+            personInput: personsinput
+        };
 
-    if (edit_id !== null) {
-        userArray = userArray.map(user =>
-            user.id === edit_id ? { ...newObj, id: edit_id } : user
-        );
-        edit_id = null;
-    } else {
-        userArray.push(newObj);
-    }
+        if (edit_id !== null) {
+            userArray = userArray.map(user =>
+                user.id === edit_id ? { ...newObj, id: edit_id } : user
+            );
+            edit_id = null;
+        } else {
+            userArray.push(newObj);
+        }
 
-    saveData(userArray);
-    displayData();
-    form.reset();
-    formData.classList.remove("active");
-});
+        saveData(userArray);
+        displayData();
+        if (form instanceof HTMLFormElement) {
+            form.reset();
+        }
+        formData.classList.remove("active");
+    });
+}
 
-function saveData(userArray:User[]):void {
+function saveData(userArray: User[]): void {
     const str = JSON.stringify(userArray);
     localStorage.setItem('users', str);
 
     // console.log(userArray);
 }
 
-searchdata.addEventListener("input", function () {
-    selectstatus.value="all";
+if (searchdata instanceof HTMLInputElement && selectstatus instanceof HTMLSelectElement) {
+    searchdata.addEventListener("input", function () {
+        selectstatus.value = "all";
 
-    const newData = userArray.filter((user, i) => {
-        return user.name.toLowerCase().includes(searchdata.value);
+        const newData = userArray.filter((user, i) => {
+            return user.name.toLowerCase().includes(searchdata.value);
+        })
+        // console.log(newData)
+        userTable(newData);
     })
-    // console.log(newData)
-    userTable(newData);
-})
+}
 
-function displayData():void {
+function displayData(): void {
     userTable(userArray);
 }
 
-function editData(id:number):void {
+function editData(id: number): void {
 
-     document.querySelectorAll(".dots-menu").forEach(menu => {
+    document.querySelectorAll(".dots-menu").forEach(menu => {
         (menu as HTMLElement).style.display = "none";
     });
 
-    let user = (userArray.find(user => user.id === id))!;
-    if(!user) return;
+    let user = (userArray.find(user => user.id === id));
+    if (!user) return;
     edit_id = id;
 
-    // console.log(user)
-    // dot_wrapper.classList.remove("dots-menu");
 
-    formData.classList.add("active");
+    if (
+        formData instanceof HTMLElement &&
+        doc instanceof HTMLInputElement &&
+        statusSelect instanceof HTMLSelectElement &&
+        personsInput instanceof HTMLInputElement &&
+        personsField instanceof HTMLElement
+    ) {
+        formData.classList.add("active");
+        doc.value = user.name;
+        statusSelect.value = user.input;
+        personsInput.value = user.personInput || "";
 
-    doc.value = user.name;
-    statusSelect.value = user.input;
-    personsInput.value = user.personInput || "";
-
-    if (user.input === "pending") {
-        personsField.style.display = "block";
-    } else {
-        personsField.style.display = "none";
+        if (user.input === "pending") {
+            personsField.style.display = "block";
+        } else {
+            personsField.style.display = "none";
+        }
     }
 }
 
-function deleteInfo(id:number):void {
-    userArray = userArray.filter(user =>  user.id !== id )
+function deleteInfo(id: number): void {
+    userArray = userArray.filter(user => user.id !== id)
     saveData(userArray);
     displayData();
 }
 
 
-function userTable(userdata:User[]) :void{
+function userTable(userdata: User[]): void {
     let titledata = '';
     userdata.forEach((user) => {
 
@@ -236,32 +277,25 @@ function userTable(userdata:User[]) :void{
 
                         </tr>`
     });
-    records.innerHTML = titledata;
+    if (records) {
+        records.innerHTML = titledata;
+    }
 }
 
 
 // filtering on basis of status
+// type filterstatusvalue = Status | "all";
 
-selectstatus.addEventListener("change",function(){
-    let statusvalue=selectstatus.value;
+if (selectstatus instanceof HTMLSelectElement){
+    selectstatus.addEventListener("change", function () {
+    const statusvalue = selectstatus.value;
 
-    if(statusvalue==="all"){
+    if (statusvalue === "all") {
         displayData();
-    }else if(statusvalue==="sign"){
-        const signArray=userArray.filter(user=>{
-            return user.input==="sign";
-        })
-        userTable(signArray);
-    }else if(statusvalue==="pending"){
-         const pendingArray=userArray.filter(user=>{
-            return user.input==="pending";
-        })
-        userTable(pendingArray);
-    }else if(statusvalue==="complete"){
-         const completeArray=userArray.filter(user=>{
-            return user.input==="complete";
-        })
-        userTable(completeArray);
+    }else {
+        const filteredarray = userArray.filter(user => user.input === statusvalue);
+        userTable(filteredarray);
     }
-})
 
+})
+}

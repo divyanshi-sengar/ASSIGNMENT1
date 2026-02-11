@@ -21,98 +21,131 @@ const selectstatus = document.getElementById("selectstatus");
 let userArray = JSON.parse(localStorage.getItem('users') || "[]");
 let edit_id = null;
 displayData();
-arrowBtn.addEventListener("click", () => {
-    logoutBox.classList.toggle("active");
+if (arrowBtn && logoutBox) {
+    arrowBtn.addEventListener("click", () => {
+        logoutBox.classList.toggle("active");
+    });
+}
+if (records) {
+    records.addEventListener("click", function (e) {
+        const dot = e.target.closest(".menu-dots");
+        if (!dot)
+            return;
+        e.stopPropagation();
+        const wrapper = dot.closest(".dots-wrapper");
+        const menu = wrapper?.querySelector(".dots-menu");
+        if (!menu)
+            return;
+        document.querySelectorAll(".dots-menu").forEach(menudot => {
+            menudot.style.display = "none";
+        });
+        menu.style.display = "flex";
+    });
+}
+window.addEventListener("click", () => {
+    document.querySelectorAll(".dots-menu").forEach(menu => {
+        menu.style.display = "none";
+    });
 });
-records.addEventListener("click", function (e) {
-    const target = e.target;
-    if (target.classList.contains("menu-dots")) {
-        let wrapper = target.closest(".dots-wrapper");
-        let menu = wrapper.querySelector(".dots-menu");
-        menu.style.display =
-            menu.style.display === "flex" ? "none" : "flex";
-    }
-});
-addBtn.addEventListener("click", () => {
-    formData.classList.add("active");
-    form.reset();
-    selectstatus.value = "all";
-    // displayData();
-});
-cancelBtn.addEventListener("click", () => {
-    formData.classList.remove("active");
-    form.reset();
-});
-formData.addEventListener("click", (e) => {
-    // console.log(e);
-    if (e.target === formData) {
+if (addBtn && formData && form && selectstatus instanceof HTMLSelectElement) {
+    addBtn.addEventListener("click", () => {
+        formData.classList.add("active");
+        if (form instanceof HTMLFormElement) {
+            form.reset();
+        }
+        selectstatus.value = "all";
+        displayData();
+    });
+}
+if (cancelBtn && formData && form) {
+    cancelBtn.addEventListener("click", () => {
         formData.classList.remove("active");
-    }
-});
-// window.addEventListener("click", (e) => {
-//     const target=e.target as HTMLElement;
-//     if (!logoutBox.contains(target) && !arrowBtn.contains(target)) {
-//         logoutBox.classList.remove("active");
-//     }
-// });
-// logoutBox.addEventListener("click", (e) => {
-//     e.stopPropagation(); 
-//     logoutBox.classList.toggle("active");
-// });
-statusSelect.addEventListener("change", function () {
-    if (this.value === "pending") {
-        personsField.style.display = "block";
-        personsInput.setAttribute("required", "true");
-    }
-    else {
+        if (form instanceof HTMLFormElement) {
+            form.reset();
+        }
+    });
+}
+if (formData) {
+    formData.addEventListener("click", (e) => {
+        // console.log(e);
+        if (e.target === formData) {
+            formData.classList.remove("active");
+        }
+    });
+}
+if (statusSelect instanceof HTMLSelectElement &&
+    personsField instanceof HTMLInputElement &&
+    personsInput instanceof HTMLInputElement) {
+    statusSelect.addEventListener("change", function () {
+        if (statusSelect.value === "pending") {
+            personsField.style.display = "block";
+            personsInput.setAttribute("required", "true");
+        }
+        else {
+            personsField.style.display = "none";
+            personsInput.removeAttribute("required");
+            personsInput.value = "";
+        }
+    });
+}
+if (form instanceof HTMLFormElement &&
+    formData instanceof HTMLElement &&
+    doc instanceof HTMLInputElement &&
+    personsInput instanceof HTMLInputElement &&
+    statusSelect instanceof HTMLSelectElement &&
+    personsField instanceof HTMLElement) {
+    form.addEventListener("submit", function (evt) {
+        evt.preventDefault();
         personsField.style.display = "none";
         personsInput.removeAttribute("required");
-        personsInput.value = "";
-    }
-});
-form.addEventListener("submit", function (evt) {
-    evt.preventDefault();
-    personsField.style.display = "none";
-    personsInput.removeAttribute("required");
-    let docinput = document.querySelector('#docinput').value;
-    let selectinput = document.querySelector('#statusSelect').value;
-    let personsinput = document.querySelector('#personsInput').value;
-    let now = new Date();
-    let date = now.toLocaleDateString("en-GB");
-    let Time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
-    let newObj = {
-        id: Date.now(),
-        name: docinput,
-        input: selectinput,
-        date: date,
-        time: Time,
-        personInput: personsinput
-    };
-    if (edit_id !== null) {
-        userArray = userArray.map(user => user.id === edit_id ? { ...newObj, id: edit_id } : user);
-        edit_id = null;
-    }
-    else {
-        userArray.push(newObj);
-    }
-    saveData(userArray);
-    displayData();
-    form.reset();
-    formData.classList.remove("active");
-});
+        let docinput = doc.value;
+        let selectinput = statusSelect.value;
+        let personsinput = personsInput.value;
+        if (selectinput !== "sign" &&
+            selectinput !== "pending" &&
+            selectinput !== "complete")
+            return;
+        let now = new Date();
+        let date = now.toLocaleDateString("en-GB");
+        let Time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+        let newObj = {
+            id: Date.now(),
+            name: docinput,
+            input: selectinput,
+            date: date,
+            time: Time,
+            personInput: personsinput
+        };
+        if (edit_id !== null) {
+            userArray = userArray.map(user => user.id === edit_id ? { ...newObj, id: edit_id } : user);
+            edit_id = null;
+        }
+        else {
+            userArray.push(newObj);
+        }
+        saveData(userArray);
+        displayData();
+        if (form instanceof HTMLFormElement) {
+            form.reset();
+        }
+        formData.classList.remove("active");
+    });
+}
 function saveData(userArray) {
     const str = JSON.stringify(userArray);
     localStorage.setItem('users', str);
     // console.log(userArray);
 }
-searchdata.addEventListener("input", function () {
-    selectstatus.value = "all";
-    const newData = userArray.filter((user, i) => {
-        return user.name.toLowerCase().includes(searchdata.value);
+if (searchdata instanceof HTMLInputElement && selectstatus instanceof HTMLSelectElement) {
+    searchdata.addEventListener("input", function () {
+        selectstatus.value = "all";
+        const newData = userArray.filter((user, i) => {
+            return user.name.toLowerCase().includes(searchdata.value);
+        });
+        // console.log(newData)
+        userTable(newData);
     });
-    // console.log(newData)
-    userTable(newData);
-});
+}
 function displayData() {
     userTable(userArray);
 }
@@ -124,17 +157,21 @@ function editData(id) {
     if (!user)
         return;
     edit_id = id;
-    // console.log(user)
-    // dot_wrapper.classList.remove("dots-menu");
-    formData.classList.add("active");
-    doc.value = user.name;
-    statusSelect.value = user.input;
-    personsInput.value = user.personInput || "";
-    if (user.input === "pending") {
-        personsField.style.display = "block";
-    }
-    else {
-        personsField.style.display = "none";
+    if (formData instanceof HTMLElement &&
+        doc instanceof HTMLInputElement &&
+        statusSelect instanceof HTMLSelectElement &&
+        personsInput instanceof HTMLInputElement &&
+        personsField instanceof HTMLElement) {
+        formData.classList.add("active");
+        doc.value = user.name;
+        statusSelect.value = user.input;
+        personsInput.value = user.personInput || "";
+        if (user.input === "pending") {
+            personsField.style.display = "block";
+        }
+        else {
+            personsField.style.display = "none";
+        }
     }
 }
 function deleteInfo(id) {
@@ -188,31 +225,22 @@ function userTable(userdata) {
 
                         </tr>`;
     });
-    records.innerHTML = titledata;
+    if (records) {
+        records.innerHTML = titledata;
+    }
 }
 // filtering on basis of status
-selectstatus.addEventListener("change", function () {
-    let statusvalue = selectstatus.value;
-    if (statusvalue === "all") {
-        displayData();
-    }
-    else if (statusvalue === "sign") {
-        const signArray = userArray.filter(user => {
-            return user.input === "sign";
-        });
-        userTable(signArray);
-    }
-    else if (statusvalue === "pending") {
-        const pendingArray = userArray.filter(user => {
-            return user.input === "pending";
-        });
-        userTable(pendingArray);
-    }
-    else if (statusvalue === "complete") {
-        const completeArray = userArray.filter(user => {
-            return user.input === "complete";
-        });
-        userTable(completeArray);
-    }
-});
+// type filterstatusvalue = Status | "all";
+if (selectstatus instanceof HTMLSelectElement) {
+    selectstatus.addEventListener("change", function () {
+        const statusvalue = selectstatus.value;
+        if (statusvalue === "all") {
+            displayData();
+        }
+        else {
+            const filteredarray = userArray.filter(user => user.input === statusvalue);
+            userTable(filteredarray);
+        }
+    });
+}
 //# sourceMappingURL=app.js.map

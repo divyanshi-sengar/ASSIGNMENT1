@@ -650,7 +650,7 @@
      padding: 6px;
      width: 120px;
      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-     display: none;
+     /* display: none; */
      z-index: 10;
      display: none;
      flex-direction: column;
