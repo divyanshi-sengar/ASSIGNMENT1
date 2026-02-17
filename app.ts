@@ -105,7 +105,7 @@ if (formData) {
 
 
 if (statusSelect instanceof HTMLSelectElement &&
-    personsField instanceof HTMLInputElement && 
+    personsField instanceof HTMLElement && 
     personsInput instanceof HTMLInputElement) {
     statusSelect.addEventListener("change", function () {
         if (statusSelect.value === "pending") {
@@ -249,6 +249,7 @@ function userTable(userdata: User[]): void {
 
         titledata += `<tr>
                             <td><input type="checkbox" /></td>
+                            
                             <td class="doc-title">${user.name}</td>
                             <td>
                                 <div class="italictext">
